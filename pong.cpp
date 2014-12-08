@@ -3,9 +3,9 @@
 #include <cstdio>
 
 // The connections for the matrix display
-#define DATA	13
-#define WR 		5
-#define CS 		6
+#define DATA	24	// was 13
+#define WR 		25 	// was 5
+#define CS 		18	// was 6
 
 // Initialize the Pong game
 CPong::CPong()
@@ -13,13 +13,11 @@ CPong::CPong()
 	, m_scoreOne(0)
 	, m_scoreTwo(0)
 	, m_controllerOne(new CNunchuck("/dev/i2c-1"))
-	//, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
+	, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
 	, m_matrix(new HT1632LEDMatrix(DATA, WR, CS))
 	, m_playerOne(new CPaddle(0, 8, 5))
 	, m_playerTwo(new CPaddle(23, 8, 5))
 	, m_ball(new CBall(12, 8, 1)) {
-
-	m_controllerTwo = m_controllerOne;
 
 	// Set up the display
 	m_matrix->begin(HT1632_COMMON_16NMOS);

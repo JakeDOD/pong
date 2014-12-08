@@ -124,8 +124,17 @@ void CNunchuck::GetControls(Controls& controls) {
 	}
 
 	if (readData() < 0) {
-        //perror("readData");
-        return;
+        
+		Init();
+
+		// Delay
+		usleep(100);
+
+		// Reattempt to connect
+		if (readData() < 0) {
+			perror("readData");
+			return;
+		}
 	}
 
 	// fill the struct with the returned data
