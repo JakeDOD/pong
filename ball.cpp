@@ -16,7 +16,7 @@ CBall::CBall(const int x, const int y, const int radius) {
 	m_y = (int)((RANDOM_NUMBER * 13) + 3);
 
 	// Set a random starting angle
-	SetAngle(((RANDOM_NUMBER > 0.5) ? 1 : -1) * ((RANDOM_NUMBER * 90.0) + 15) * PI / 180.0);
+	SetAngle((((RANDOM_NUMBER > 0.5) ? 1 : -1) * ((RANDOM_NUMBER * 80.0) + 30) * PI) / 180.0);
 }
 
 void CBall::SetAngle(const double angle) {
