@@ -159,14 +159,15 @@ int CPong::Animate() {
 }
 
 void CPong::DisplayWin() {
+	m_matrix->clearScreen();
 	m_matrix->setTextSize(1);    // size 1 == 8 pixels high
 	m_matrix->setTextColor(1);   // 'lit' LEDs
 	m_matrix->setCursor(0, 0);   // start at top left, with one pixel of spacing
 
 	if (m_scoreOne == 10) {
-		m_matrix->print("Pl 1");
+		m_matrix->print("PL 1");
 	} else if (m_scoreTwo == 10) {
-		m_matrix->print("Pl 2");
+		m_matrix->print("PL 2");
 	}
 
 	m_matrix->setCursor(0, 8);   // next line, 8 pixels down

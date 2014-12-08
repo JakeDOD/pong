@@ -13,10 +13,10 @@ CBall::CBall(const int x, const int y, const int radius) {
 	std::srand(std::time(0));
 
 	// Randomize the starting position
-	m_y = (int)((RANDOM_NUMBER * 10) + 5);
+	m_y = (int)((RANDOM_NUMBER * 13) + 3);
 
 	// Set a random starting angle
-	SetAngle(((RANDOM_NUMBER > 0.5) ? 1 : -1) * RANDOM_NUMBER * 45.0 * PI / 180.0);
+	SetAngle(((RANDOM_NUMBER > 0.5) ? 1 : -1) * ((RANDOM_NUMBER * 90.0) + 45) * PI / 180.0);
 }
 
 void CBall::SetAngle(const double angle) {
@@ -40,12 +40,10 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 	char x = (char)floor(m_x + 0.5);
 	char y = (char)floor(m_y + 0.5);
 
-	printf("x: %d\ty=: %d\n", x, y);
-
 	// Check if we've hit the boundaries
 	if (x <= 1) {
 		// we have hit the left side
-		if ((x == 1) && (y >= leftPaddle->m_y) && (y <= (leftPaddle->m_y + leftPaddle->m_size - 1))) {
+		if ((x <= 1) && (y >= leftPaddle->m_y) && (y <= (leftPaddle->m_y + leftPaddle->m_size - 1))) {
 			// we have hit a paddle
 			// change directions
 			m_dx = 0 - m_dx;
@@ -59,7 +57,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 
 	} else if (x >= 22) {
 		// we have hit the right side
-		if ((x == 22) && (y >= rightPaddle->m_y) && (y <= (rightPaddle->m_y + rightPaddle->m_size - 1))) {
+		if ((x >= 22) && (y >= rightPaddle->m_y) && (y <= (rightPaddle->m_y + rightPaddle->m_size - 1))) {
 			// we have not hit a paddle
 			// change directions
 			m_dx = 0 - m_dx;
@@ -67,7 +65,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 		} else if (x == 23) {
 			// left point!
 			return 1;
-		}		
+		}
 	}
 
 	if ((y <= 0) || (y >= 15)) {
