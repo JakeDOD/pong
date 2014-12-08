@@ -38,7 +38,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 	char x = (char)floor(m_x + 0.5);
 	char y = (char)floor(m_y + 0.5);
 
-	//printf("x: %d\ty=: %d\n", x, y);
+	printf("x: %d\ty=: %d\n", x, y);
 
 	// Check if we've hit the boundaries
 	if (x <= 0) {
