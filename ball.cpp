@@ -43,28 +43,31 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 	printf("x: %d\ty=: %d\n", x, y);
 
 	// Check if we've hit the boundaries
-	if (x <= 0) {
+	if (x <= 1) {
 		// we have hit the left side
-		if ((y < leftPaddle->m_y) || (y > (leftPaddle->m_y + leftPaddle->m_size - 1))) {
-			// we have not hit a paddle
+		if ((x == 1) && (y >= leftPaddle->m_y) && (y <= (leftPaddle->m_y + leftPaddle->m_size - 1))) {
+			// we have hit a paddle
+			// change directions
+			m_dx = 0 - m_dx;
+			m_speed += SPEED_INC;
+
+		} else if (x == 0) {
 			printf("Left side hit\n");
+			// right point!
 			return -1;
 		}
 
-		// change directions
-		m_dx = 0 - m_dx;
-		m_speed += SPEED_INC;
-
-	} else if (x >= 23) {
+	} else if (x >= 22) {
 		// we have hit the right side
-		if ((y < rightPaddle->m_y) || (y > (rightPaddle->m_y + rightPaddle->m_size - 1))) {
+		if ((x == 22) && (y >= rightPaddle->m_y) && (y <= (rightPaddle->m_y + rightPaddle->m_size - 1))) {
 			// we have not hit a paddle
+			// change directions
+			m_dx = 0 - m_dx;
+			m_speed += SPEED_INC;
+		} else if (x == 23) {
+			// left point!
 			return 1;
-		}
-
-		// change directions
-		m_dx = 0 - m_dx;
-		m_speed += SPEED_INC;
+		}		
 	}
 
 	if ((y <= 0) || (y >= 15)) {
