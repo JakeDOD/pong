@@ -7,6 +7,10 @@ CFLAGS=-c -O2 -std=c++0x -Wall -lwiringPi
 
 all: pong
 
+update:
+	git pull origin
+	pong
+
 pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o
 	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o -o pong
 
