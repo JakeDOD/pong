@@ -2,6 +2,8 @@
 
 #include <cstdio>
 
+#define SPEED_INC	0.1
+
 CBall::CBall(const int x, const int y, const int radius) {
 	m_x = x;
 	//m_y = y;
@@ -51,7 +53,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 
 		// change directions
 		m_dx = 0 - m_dx;
-		m_speed += 0.2;
+		m_speed += SPEED_INC;
 
 	} else if (x >= 23) {
 		// we have hit the right side
@@ -62,7 +64,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 
 		// change directions
 		m_dx = 0 - m_dx;
-		m_speed += 0.2;
+		m_speed += SPEED_INC;
 	}
 
 	if ((y <= 0) || (y >= 15)) {

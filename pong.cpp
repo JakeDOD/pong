@@ -19,8 +19,6 @@ CPong::CPong()
 	, m_playerTwo(new CPaddle(23, 8, 5))
 	, m_ball(new CBall(12, 8, 1)) {
 
-	//m_controllerTwo = m_controllerOne;
-
 	// Set up the display
 	m_matrix->begin(HT1632_COMMON_16NMOS);
 }
@@ -182,7 +180,7 @@ void CPong::DrawFrame() {
 	if (m_IsPaused) {
 		// Check for a win before continuing
 		if ((m_scoreOne == 10) || (m_scoreTwo == 10)) {
-			DisplayWin();	
+			DisplayWin();
 		}
 	} else {
 		// First reset the screen
