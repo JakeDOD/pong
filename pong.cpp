@@ -126,7 +126,7 @@ int CPong::Animate() {
 	}
 
 	// Update the position of the ball
-	char retValue = m_ball->UpdatePosition(m_playerOne, m_playerTwo);
+	int retValue = m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 	if (retValue == -1) {
 		// for debugging
 		printf("Ball hit the left side\n");
