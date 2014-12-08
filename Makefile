@@ -9,7 +9,7 @@ all: pong
 
 update:
 	git pull origin
-	pong
+	make pong
 
 pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o
 	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o -o pong
