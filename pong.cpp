@@ -13,13 +13,13 @@ CPong::CPong()
 	, m_scoreOne(0)
 	, m_scoreTwo(0)
 	, m_controllerOne(new CNunchuck("/dev/i2c-1"))
-	//, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
+	, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
 	, m_matrix(new HT1632LEDMatrix(DATA, WR, CS))
 	, m_playerOne(new CPaddle(0, 8, 5))
 	, m_playerTwo(new CPaddle(23, 8, 5))
 	, m_ball(new CBall(12, 8, 1)) {
 
-	m_controllerTwo = m_controllerOne;
+	//m_controllerTwo = m_controllerOne;
 
 	// Set up the display
 	m_matrix->begin(HT1632_COMMON_16NMOS);
