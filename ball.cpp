@@ -45,6 +45,7 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 		// we have hit the left side
 		if ((y < leftPaddle->m_y) || (y > (leftPaddle->m_y + leftPaddle->m_size - 1))) {
 			// we have not hit a paddle
+			printf("Left side hit\n");
 			return -1;
 		}
 
