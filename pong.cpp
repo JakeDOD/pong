@@ -29,11 +29,11 @@ CPong::CPong()
 int CPong::Init() {
 
 	// Initialize the nunchuck controllers
-	if ((m_controllerOne->Init() < 0) /*|| (m_controllerTwo->Init() < 0)*/) {
+	if ((m_controllerOne->Init() < 0) || (m_controllerTwo->Init() < 0)) {
 		return -1;
 	}
 
-	if ((m_controllerOne->ReadID() < 0) /*|| (m_controllerTwo->ReadID() < 0)*/) {
+	if ((m_controllerOne->ReadID() < 0) || (m_controllerTwo->ReadID() < 0)) {
 		return -2;
 	}
 
