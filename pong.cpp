@@ -173,6 +173,32 @@ void CPong::DisplayWin() {
 	m_matrix->setCursor(0, 8);   // next line, 8 pixels down
 	m_matrix->print("WINS");
 	m_matrix->writeScreen();
+
+	bool gameOver = true;
+	while (gameOver) {
+
+		// Start by getting the current status of the controllers
+		Controls nunchuckOne;
+		m_controllerOne->GetControls(nunchuckOne);
+		Controls nunchuckTwo;
+		m_controllerTwo->GetControls(nunchuckTwo);
+
+		// wait for conformation controls
+		if ((nunchuckOne.IsValid && nunchuckOne.Button_C && nunchuckOne.Button_Z)
+			|| (nunchuckTwo.IsValid && nunchuckTwo.Button_C && nunchuckTwo.Button_Z)) {
+
+
+			// reset the game
+			m_playerOne.reset(new CPaddle(0, 8, 5));
+			m_playerTwo.reset(new CPaddle(23, 8, 5));
+			m_ball.reset(new CBall(12, 8, 1));
+			m_scoreOne = 0;
+			m_scoreTwo = 0;
+			gameOver = false;
+		}
+
+		usleep(250);
+	}
 }
 
 // The drawing function
