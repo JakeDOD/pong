@@ -3,17 +3,18 @@
 #include <cstdio>
 
 #define SPEED_INC	0.1
+#define RADIUS 		2
 
-CBall::CBall(const int x, const int y, const int radius) {
+CBall::CBall(const int x, const int y) {
 	m_x = x;
 	//m_y = y;
-	m_radius = radius;
+	m_radius = RADIUS;
 	m_speed = 0.5;
 
 	std::srand(std::time(0));
 
 	// Randomize the starting position
-	m_y = (int)((RANDOM_NUMBER * 13) + 3);
+	m_y = (int)((RANDOM_NUMBER * 10) + 3);
 
 	// Set a random starting angle
 	SetAngle((((RANDOM_NUMBER > 0.5) ? 1 : -1) * ((RANDOM_NUMBER * 45.0) + 0.0) * PI) / 180.0);

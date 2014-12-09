@@ -17,7 +17,7 @@ CPong::CPong()
 	, m_matrix(new HT1632LEDMatrix(DATA, WR, CS))
 	, m_playerOne(new CPaddle(0, 8, 5))
 	, m_playerTwo(new CPaddle(23, 8, 5))
-	, m_ball(new CBall(12, 8, 1)) {
+	, m_ball(new CBall(12, 8)) {
 
 	// Set up the display
 	m_matrix->begin(HT1632_COMMON_16NMOS);
@@ -135,7 +135,7 @@ int CPong::Animate() {
 		m_scoreTwo++;
 
 		// Create a new ball
-		m_ball.reset(new CBall(12, 8, 1));
+		m_ball.reset(new CBall(12, 8);
 		m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 
 	} else if (retValue == 1) {
@@ -146,7 +146,7 @@ int CPong::Animate() {
 		m_scoreOne++;
 
 		// Create a new ball
-		m_ball.reset(new CBall(12, 8, 1));
+		m_ball.reset(new CBall(12, 8);
 		m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 	}
 
@@ -187,11 +187,10 @@ void CPong::DisplayWin() {
 		if ((nunchuckOne.IsValid && nunchuckOne.Button_C && nunchuckOne.Button_Z)
 			|| (nunchuckTwo.IsValid && nunchuckTwo.Button_C && nunchuckTwo.Button_Z)) {
 
-
 			// reset the game
 			m_playerOne.reset(new CPaddle(0, 8, 5));
 			m_playerTwo.reset(new CPaddle(23, 8, 5));
-			m_ball.reset(new CBall(12, 8, 1));
+			m_ball.reset(new CBall(12, 8));
 			m_scoreOne = 0;
 			m_scoreTwo = 0;
 			gameOver = false;
