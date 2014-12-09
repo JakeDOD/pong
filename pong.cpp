@@ -135,7 +135,7 @@ int CPong::Animate() {
 		m_scoreTwo++;
 
 		// Create a new ball
-		m_ball.reset(new CBall(12, 8);
+		m_ball.reset(new CBall(12, 8));
 		m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 
 	} else if (retValue == 1) {
@@ -146,7 +146,7 @@ int CPong::Animate() {
 		m_scoreOne++;
 
 		// Create a new ball
-		m_ball.reset(new CBall(12, 8);
+		m_ball.reset(new CBall(12, 8));
 		m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 	}
 
