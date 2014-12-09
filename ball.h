@@ -17,7 +17,7 @@
 
 class CBall {
 public:
-	CBall(const int x, const int y, const int radius);
+	CBall(const int x, const int y);
 
 	void SetAngle(const double angle);
 
