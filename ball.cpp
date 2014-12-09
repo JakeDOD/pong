@@ -3,7 +3,7 @@
 #include <cstdio>
 
 #define SPEED_INC	0.1
-#define RADIUS 		2
+#define RADIUS 		1
 
 CBall::CBall(const int x, const int y) {
 	m_x = x;
