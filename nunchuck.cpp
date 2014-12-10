@@ -2,10 +2,17 @@
 #include <cstring>
 #include <stdio.h>
 
-CNunchuck::CNunchuck(char deviceAddr[]) {
+CNunchuck::CNunchuck(const char deviceAddr[]) {
 
 	// Initialize the member variable
 	strcpy(m_deviceAddr, deviceAddr);
+}
+
+CNunchuck::~CNunchuck() {
+	// close the file descriptor
+	if (m_fd > 0) {
+		close(m_fd);
+	}
 }
 
 int CNunchuck::Init() {

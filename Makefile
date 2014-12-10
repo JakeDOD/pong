@@ -11,8 +11,8 @@ update:
 	git pull origin
 	make pong
 
-pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o
-	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o -o pong
+pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o
+	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o -o pong
 
 game.o: game.cpp
 	$(CC) $(CFLAGS) game.cpp
@@ -31,6 +31,12 @@ nunchuck.o: nunchuck.cpp
 
 pong.o: pong.cpp
 	$(CC) $(CFLAGS) pong.cpp
+
+segdisplay.o: segdisplay.cpp
+	$(CC) $(CFLAGS) segdisplay.cpp
+
+scoreboard.o: scoreboard.cpp
+	$(CC) $(CFLAGS) scoreboard.cpp
 
 other:
 	$(CC) $(CFLAGS) demo.cpp HT1632.cpp -o demo

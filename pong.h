@@ -9,6 +9,7 @@
 #include "paddle.h"
 #include "nunchuck.h"
 #include "HT1632.h"
+#include "scoreboard.h"
 
 class CPong {
 public:
@@ -34,8 +35,9 @@ private:
 	CPaddlePtr_t m_playerTwo;
 	CBallPtr_t m_ball;
 
-	// The display
+	// The displays
 	HT1632LEDMatrixPtr_t m_matrix;
+	CScoreBoardPtr_t m_scoreBoard;
 
 	// The pong controllers
 	CNunchuckPtr_t m_controllerOne;

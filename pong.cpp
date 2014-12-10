@@ -15,24 +15,30 @@ CPong::CPong()
 	, m_controllerOne(new CNunchuck("/dev/i2c-1"))
 	, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
 	, m_matrix(new HT1632LEDMatrix(DATA, WR, CS))
+	, m_scoreBoard(new CScoreBoard())
 	, m_playerOne(new CPaddle(0, 8, 5))
 	, m_playerTwo(new CPaddle(23, 8, 5))
 	, m_ball(new CBall(12, 8)) {
-
-	// Set up the display
-	m_matrix->begin(HT1632_COMMON_16NMOS);
 }
 
 // Initialize the game
 int CPong::Init() {
 
-	// Initialize the nunchuck controllers
-	if ((m_controllerOne->Init() < 0) || (m_controllerTwo->Init() < 0)) {
+	// Set up the display
+	m_matrix->begin(HT1632_COMMON_16NMOS);
+
+	// Initialize the scoreboard
+	if (m_scoreBoard->Init() < 0) {
 		return -1;
 	}
 
-	if ((m_controllerOne->ReadID() < 0) || (m_controllerTwo->ReadID() < 0)) {
+	// Initialize the nunchuck controllers
+	if ((m_controllerOne->Init() < 0) || (m_controllerTwo->Init() < 0)) {
 		return -2;
+	}
+
+	if ((m_controllerOne->ReadID() < 0) || (m_controllerTwo->ReadID() < 0)) {
+		return -3;
 	}
 
 	return 0;
@@ -93,9 +99,32 @@ int CPong::Animate() {
 	}
 
 	// Check if the controllers are pausing/unpausing the game
-	// FIXME: Needs debouncing / proper logic
 	if ((nunchuckOne.Button_C) || (nunchuckTwo.Button_C)) {
-		m_IsPaused = !m_IsPaused;
+
+		bool isValidPress = false;
+
+		// dobounce the input by checking that the input remains valid for 3 polls
+		for (char i = 0; i < 3; i++) {
+			usleep(10000);
+
+			// get the controller input
+			Controls leftNunchuck;
+			m_controllerOne->GetControls(leftNunchuck);
+			Controls rightNunchuck;
+			m_controllerTwo->GetControls(rightNunchuck);
+
+			if ((nunchuckOne.Button_C && nunchuckOne.IsValid) || (nunchuckTwo.Button_C && nunchuckTwo.IsValid)) {
+				// still pressing C button
+				isValidPress = true;
+			} else {
+				isValidPress = false;
+				break;
+			}
+		}
+
+		if (isValidPress) {
+			m_IsPaused = !m_IsPaused;
+		}
 
 		// We can return early if the game is paused
 		if (m_IsPaused) {
@@ -104,7 +133,7 @@ int CPong::Animate() {
 	}
 
 	if (m_IsPaused) {
-		printf("Game is paused!\n");
+		//printf("Game is paused!\n");
 		return 0;
 	}
 
@@ -128,22 +157,20 @@ int CPong::Animate() {
 	// Update the position of the ball
 	int retValue = m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 	if (retValue == -1) {
-		// for debugging
-		printf("Ball hit the left side\n");
 
 		// playerOne has missed the ball
 		m_scoreTwo++;
+		m_scoreBoard->UpdateScore(m_scoreOne, m_scoreTwo);
 
 		// Create a new ball
 		m_ball.reset(new CBall(12, 8));
 		m_ball->UpdatePosition(m_playerOne, m_playerTwo);
 
 	} else if (retValue == 1) {
-		// for debugging
-		printf("Ball hit the right side\n");
 
 		// playerTwo has misseed the ball
 		m_scoreOne++;
+		m_scoreBoard->UpdateScore(m_scoreOne, m_scoreTwo);
 
 		// Create a new ball
 		m_ball.reset(new CBall(12, 8));
@@ -193,6 +220,7 @@ void CPong::DisplayWin() {
 			m_ball.reset(new CBall(12, 8));
 			m_scoreOne = 0;
 			m_scoreTwo = 0;
+			m_scoreBoard->UpdateScore(m_scoreOne, m_scoreTwo);
 			gameOver = false;
 		}
 

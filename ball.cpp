@@ -26,8 +26,6 @@ void CBall::SetAngle(const double angle) {
 	// Round to two decimal places
 	m_dx = cos(angle);
 	m_dy = sin(angle);
-
-	printf("%lf\n", m_angle);
 }
 
 // Collision detection doesn't take into account the radius yet
@@ -51,7 +49,6 @@ int CBall::UpdatePosition(const CPaddlePtr_t& leftPaddle, const CPaddlePtr_t& ri
 			m_speed += SPEED_INC;
 
 		} else if (x == 0) {
-			printf("Left side hit\n");
 			// right point!
 			return -1;
 		}

@@ -47,8 +47,8 @@ struct Controls {
 
 class CNunchuck {
 public:
-	CNunchuck(char deviceAddr[]);
-	inline ~CNunchuck(void) { close(m_fd); }
+	CNunchuck(const char deviceAddr[]);
+	virtual ~CNunchuck(void);
 
 	int Init(void);
 
