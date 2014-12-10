@@ -38,11 +38,5 @@ segdisplay.o: segdisplay.cpp
 scoreboard.o: scoreboard.cpp
 	$(CC) $(CFLAGS) scoreboard.cpp
 
-other:
-	$(CC) $(CFLAGS) demo.cpp HT1632.cpp -o demo
-	$(CC) $(CFLAGS) test.cpp HT1632.cpp -o test
-	$(CC) $(CFLAGS) exercise.cpp HT1632.cpp -o exercise
-	$(CC) $(CFLAGS) nunchuck_test3.c -o nunchuck_test
-
 clean:
 	rm -rf *o pong
