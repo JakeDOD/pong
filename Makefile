@@ -11,6 +11,10 @@ update:
 	git pull origin
 	make pong
 
+level2:
+	sudo ./pong &
+	sudo ./pong &
+
 pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o
 	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o -o pong
 
