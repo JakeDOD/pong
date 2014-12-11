@@ -11,7 +11,7 @@ public:
 	virtual int Init(void);
 
 	// Set the score on the display
-	int UpdateDisplay(const char* displayString, const unsigned length, const index = 0, const bool bDisplayColon = false);
+	int UpdateDisplay(const char* displayString, const unsigned length, const int index = 0, const bool bDisplayColon = false);
 
 private:
 	char getChar(const char ch);

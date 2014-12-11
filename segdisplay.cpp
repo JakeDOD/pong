@@ -73,7 +73,7 @@ int CSegDisplay::Init() {
 	}
 }
 
-int CSegDisplay::UpdateDisplay(const char* displayString, const unsigned length, const index, const bool bDisplayColon) {
+int CSegDisplay::UpdateDisplay(const char* displayString, const unsigned length, const int index, const bool bDisplayColon) {
 
 	char buffer[17];
 
