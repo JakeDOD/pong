@@ -12,7 +12,7 @@ public:
 	// Initialize the scoreboard
 	int Init(void);
 	
-	void CScoreBoard::UpdateScore(const char leftScore, const char rightScore);
+	void UpdateScore(const char leftScore, const char rightScore);
 };
 
 typedef std::shared_ptr<CScoreBoard> CScoreBoardPtr_t;
