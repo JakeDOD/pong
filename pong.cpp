@@ -7,6 +7,8 @@
 #define WR 		25 	// was 5
 #define CS 		18	// was 6
 
+#define FOREVER 1000
+
 // Initialize the Pong game
 CPong::CPong()
 	: m_IsPaused(false)
@@ -38,10 +40,14 @@ int CPong::Init() {
 		return -1;
 	}
 
+	usleep(10000);
+
 	// Initialize the nunchuck controllers
 	if ((m_controllerOne->Init() < 0) || (m_controllerTwo->Init() < 0)) {
 		return -2;
 	}
+
+	usleep(FOREVER);
 
 	if ((m_controllerOne->ReadID() < 0) || (m_controllerTwo->ReadID() < 0)) {
 		return -3;
