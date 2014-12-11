@@ -21,6 +21,12 @@ CPong::CPong()
 	, m_ball(new CBall(12, 8)) {
 }
 
+CPong::~CPong() {
+	// clear the screen of the matrix
+	m_matrix->clearScreen();
+	m_matrix->writeScreen();
+}
+
 // Initialize the game
 int CPong::Init() {
 

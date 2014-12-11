@@ -14,6 +14,7 @@
 class CPong {
 public:
 	CPong(void);
+	~CPong(void);
 
 	// Initialize the game
 	int Init(void);
