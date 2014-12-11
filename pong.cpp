@@ -111,7 +111,7 @@ int CPong::Animate() {
 
 		// dobounce the input by checking that the input remains valid for 3 polls
 		for (char i = 0; i < 3; i++) {
-			usleep(10000);
+			usleep(25000);
 
 			// get the controller input
 			Controls leftNunchuck;
