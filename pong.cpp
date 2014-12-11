@@ -230,7 +230,7 @@ void CPong::DisplayWin() {
 			gameOver = false;
 		}
 
-		usleep(250);
+		usleep(25000);
 	}
 }
 
