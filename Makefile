@@ -1,22 +1,30 @@
-# I am a comment, and I want to say that the variable CC will be
-# the compiler to use.
+
 CC=g++
-# Hey!, I am comment number 2. I want to say that CFLAGS will be the
-# options I'll pass to the compiler.
-CFLAGS=-c -O2 -std=c++0x -Wall -lwiringPi
+
+CFLAGS=-c -O2 -std=c++0x -Wall -lwiringPi -lbcm2835
 
 all: pong
 
-update:
-	git pull origin
-	make pong
+# Get any updates from GitHub and compile the source
+update: pull pong
 
+# Compile the source and install pong so that it runs at boot
+install: pong
+	# Add a line to the /etc/rc.local file so that pong runs at boot
+	sudo sh install_pong.sh
+
+# Pull changes from GitHub
+pull:
+	git pull origin
+
+# Requires to be run with sudo
 level2:
+	# This is more of a joke than anything, and the results are unpredictable
 	sudo ./pong &
 	sudo ./pong &
 
 pong: game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o
-	$(CC) -lwiringPi game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o -o pong
+	$(CC) -lwiringPi -lbcm2835 game.o HT1632.o paddle.o ball.o nunchuck.o pong.o segdisplay.o scoreboard.o -o pong
 
 game.o: game.cpp
 	$(CC) $(CFLAGS) game.cpp
