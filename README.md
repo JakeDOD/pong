@@ -35,6 +35,11 @@ sudo make install
 ```
 Pong will then run every time the Raspberry Pi reboots, so an HDMI display is not required to be connected. To play pong without installing the game, replace ```make install``` with ```make``` and then type ```sudo ./pong``` to run the game.
 
+To check for updates, use: (No need to reinstall)
+```
+make update
+```
+
 # How To Play
 The game will start automatically, just use ```Up``` and ```Down``` on the joysticks to move the paddles and ```C``` to pause the game. Press ```C + Z``` on either nunchuck to restart the game.
 
