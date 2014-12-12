@@ -1,3 +1,5 @@
+// Thank you Adafruit for this wonderful class!
+
 #ifndef HT1632_H_
 #define HT1632_H_
 
