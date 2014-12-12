@@ -69,9 +69,6 @@ int CNunchuck::ReadID() {
 
 	m_IsInitialized = true;
 
-	// for debug only
-	printf("0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x\n", m_buf[0], m_buf[1], m_buf[2], m_buf[3], m_buf[4], m_buf[5]);
-
 	return 0;
 }
 
