@@ -11,16 +11,16 @@
 
 // Initialize the Pong game
 CPong::CPong()
-	: m_IsPaused(false)
-	, m_scoreOne(0)
-	, m_scoreTwo(0)
-	, m_controllerOne(new CNunchuck("/dev/i2c-1"))
-	, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
+	: m_playerOne(new CPaddle(0, 8, 5))
+	, m_playerTwo(new CPaddle(23, 8, 5))
+	, m_ball(new CBall(12, 8))
 	, m_matrix(new HT1632LEDMatrix(DATA, WR, CS))
 	, m_scoreBoard(new CScoreBoard())
-	, m_playerOne(new CPaddle(0, 8, 5))
-	, m_playerTwo(new CPaddle(23, 8, 5))
-	, m_ball(new CBall(12, 8)) {
+	, m_controllerOne(new CNunchuck("/dev/i2c-1"))
+	, m_controllerTwo(new CNunchuck("/dev/i2c-0"))
+	, m_IsPaused(false)
+	, m_scoreOne(0)
+	, m_scoreTwo(0) {
 }
 
 CPong::~CPong() {
