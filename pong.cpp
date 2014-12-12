@@ -125,7 +125,8 @@ int CPong::Animate() {
 			Controls rightNunchuck;
 			m_controllerTwo->GetControls(rightNunchuck);
 
-			if ((nunchuckOne.Button_C && nunchuckOne.IsValid) || (nunchuckTwo.Button_C && nunchuckTwo.IsValid)) {
+			if ((nunchuckOne.Button_C && nunchuckOne.IsValid)
+				|| (nunchuckTwo.Button_C && nunchuckTwo.IsValid)) {
 				// still pressing C button
 				isValidPress = true;
 			} else {
